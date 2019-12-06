@@ -1,2 +1,2 @@
-# Conenct4
+# Connect 4
 ok beast
