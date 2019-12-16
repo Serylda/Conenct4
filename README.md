@@ -1,2 +1,2 @@
 # Connect 4
-ok beast
+This is a game of Connect 4
