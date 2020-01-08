@@ -13,29 +13,28 @@ import java.util.Scanner;
  */
 public class MainWindow {
     
-    int rows = 6;
-    int columns = 7;
-    int[][] array = new int[rows][columns];
+    final int ROWS = 6;
+    final int COLUMNS = 7;
+    int[][][] array;
     
     public MainWindow(){
-        
+        array = new int[ROWS][COLUMNS][2];
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean userChoice = true;
-        System.out.println("Do you want to keep playing (Y/N)?"); 
-        Scanner scan = new Scanner(System.in);
-        System.out.println(scan.nextLine());
-        
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Test");
+        String input = keyboard.next();
+        System.out.println(input);
     }
     
     public void printArray(){
         
-        for (int i = 0; i < rows; i++){
-            for (int j = 0; j < columns; j++){
+        for (int i = 0; i < ROWS; i++){
+            for (int j = 0; j < COLUMNS; j++){
                 System.out.print(array[i][j] + " ");
             }
             System.out.println();
