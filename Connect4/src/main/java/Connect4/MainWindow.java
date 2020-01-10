@@ -15,23 +15,21 @@ public class MainWindow {
     
     int rows = 6;
     int columns = 7;
-    int[][] array = new int[rows][columns];
+    int[][][] array;
     
     final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = red, 2 = blue
     final int CHECKED = 1; //checked is index of 3rd array. 0 = not checked, 1 = checked
     
     public MainWindow(){
-        
+        array = new int[rows][columns][2];
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean userChoice = true;
-        System.out.println("Do you want to keep playing (Y/N)?"); 
-        Scanner scan = new Scanner(System.in);
-        System.out.println(scan.nextLine());
+        MainWindow mw = new MainWindow();
+        mw.printArray();
         
     }
     
@@ -39,7 +37,7 @@ public class MainWindow {
         
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
-                System.out.print(array[i][j] + " ");
+                System.out.print(array[i][j][STATE] + " ");
             }
             System.out.println();
         }
