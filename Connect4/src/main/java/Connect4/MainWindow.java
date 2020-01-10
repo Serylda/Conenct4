@@ -18,7 +18,6 @@ public class MainWindow {
     int[][] array = new int[rows][columns];
     
     public MainWindow(){
-        
     }
 
     /**
@@ -28,7 +27,9 @@ public class MainWindow {
         boolean userChoice = true;
         System.out.println("Do you want to keep playing (Y/N)?"); 
         Scanner scan = new Scanner(System.in);
-        System.out.println(scan.nextLine());
+        System.out.println("Do you want to keep playing (Y/N)?"); 
+        String answer = scan.next();
+        System.out.println(answer);
         
     }
     
