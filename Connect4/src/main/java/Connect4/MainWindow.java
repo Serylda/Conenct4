@@ -17,6 +17,9 @@ public class MainWindow {
     final int COLUMNS = 7;
     int[][][] array;
     
+    final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = red, 2 = blue
+    final int CHECKED = 1; //checked is index of 3rd array. 0 = not checked, 1 = checked
+    
     public MainWindow(){
         array = new int[ROWS][COLUMNS][2];
     }
