@@ -13,31 +13,32 @@ import java.util.Scanner;
  */
 public class MainWindow {
     
-    final int ROWS = 6;
-    final int COLUMNS = 7;
-    int[][][] array;
+    int rows = 6;
+    int columns = 7;
+    int[][] array = new int[rows][columns];
     
     final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = red, 2 = blue
     final int CHECKED = 1; //checked is index of 3rd array. 0 = not checked, 1 = checked
     
     public MainWindow(){
-        array = new int[ROWS][COLUMNS][2];
+        
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Test");
-        String input = keyboard.next();
-        System.out.println(input);
+        boolean userChoice = true;
+        System.out.println("Do you want to keep playing (Y/N)?"); 
+        Scanner scan = new Scanner(System.in);
+        System.out.println(scan.nextLine());
+        
     }
     
     public void printArray(){
         
-        for (int i = 0; i < ROWS; i++){
-            for (int j = 0; j < COLUMNS; j++){
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < columns; j++){
                 System.out.print(array[i][j] + " ");
             }
             System.out.println();
