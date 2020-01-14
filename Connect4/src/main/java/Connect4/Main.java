@@ -25,23 +25,42 @@ public class Main {
         boolean userChoice = true;
         Scanner scan = new Scanner(System.in);
         String input = "";
+        int column = 0;
+        
         do{
+            m.printArrayState();
+            System.out.println("Pick number from 1 - 7");
+            column = scan.nextInt();
+            m.dropDisc(column, "blue");
             
             System.out.println("Continue? (Y/N)");
             input = scan.next();
-            if (input == "Y")
+            if (input.equals("Y"))
                 userChoice = true;
             else 
                 userChoice = false;
+            
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            
         }while (userChoice);
     }
     
     
-    public void printArray(){
-        
+    public void printArrayState(){
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
                 System.out.print(array[i][j][STATE] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public void printArrayChecked(){
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < columns; j++){
+                System.out.print(array[i][j][CHECKED] + " ");
             }
             System.out.println();
         }
@@ -52,13 +71,17 @@ public class Main {
         int row = maxRow;
         for(row = maxRow; row >= 0; row--)
         {
-            if (array[row][col][STATE] == 0)
+            if (array[0][col][STATE] == 1 || array[0][col][STATE] == 2){
+                System.out.println("\nColumn is already full. Choose another column.\n");
+                break;
+            }
+            else if (array[row][col][STATE] == 0)
             {
                 if (color == "blue"){
-                    array[row][column][STATE] = 1;
+                    array[row][col][STATE] = 1;
                 }
                 else {
-                    array[row][column][STATE] = 2;
+                    array[row][col][STATE] = 2;
                 }
                 break;
             }
