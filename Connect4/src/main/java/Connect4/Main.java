@@ -25,24 +25,28 @@ public class Main {
         boolean userChoice = true;
         Scanner scan = new Scanner(System.in);
         String input = "";
-        int column = 0;
+        int columnBlue = 0;
+        int columnRed = 0;
         
         do{
+            System.out.println("Player 1(Blue): Pick number from 1 - 7");
+            columnBlue = scan.nextInt();
+            m.dropDisc(columnBlue, "blue");
             m.printArrayState();
-            System.out.println("Pick number from 1 - 7");
-            column = scan.nextInt();
-            m.dropDisc(column, "blue");
+            
+            System.out.println("Player 2(Red): Pick number from 1 - 7");
+            columnRed = scan.nextInt();
+            m.dropDisc(columnRed, "red");
+            m.printArrayState();
             
             System.out.println("Continue? (Y/N)");
             input = scan.next();
-            if (input.equals("Y"))
+            if (input.equals("Y") || input.equals("y"))
                 userChoice = true;
             else 
                 userChoice = false;
             
-            System.out.println();
-            System.out.println();
-            System.out.println();
+            System.out.println("\n\n");
             
         }while (userChoice);
     }
@@ -71,7 +75,11 @@ public class Main {
         int row = maxRow;
         for(row = maxRow; row >= 0; row--)
         {
-            if (array[0][col][STATE] == 1 || array[0][col][STATE] == 2){
+            if (col < 0 || col > maxColumn){
+                System.out.println("\nYour column value is out of range. Please choose a column value from 1-7\n");
+                break;
+            }
+            else if (array[0][col][STATE] == 1 || array[0][col][STATE] == 2){
                 System.out.println("\nColumn is already full. Choose another column.\n");
                 break;
             }
