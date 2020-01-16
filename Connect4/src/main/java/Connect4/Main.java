@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Main {
     
-    int rows = 6;
-    int columns = 7;
+    final int rows = 6;
+    final int columns = 7;
     int[][][] array;
     
     final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = blue, 2 = red
@@ -15,8 +15,13 @@ public class Main {
     final int maxRow = 5;
     final int maxColumn = 6;
     
+    public int blueTurnCount; //counts turns of player 1
+    public int redTurnCount; //counts turns of player 2
+    
     public Main(){
         array = new int[rows][columns][2];
+        blueTurnCount = 0;
+        redTurnCount = 0;
     }
             
     public static void main(String[] args)
@@ -87,13 +92,29 @@ public class Main {
             {
                 if (color == "blue"){
                     array[row][col][STATE] = 1;
+                    blueTurnCount++;
+                    checkWin(row, col, color);
                 }
                 else {
                     array[row][col][STATE] = 2;
+                    redTurnCount++;
+                    checkWin(row, col, color);
                 }
                 break;
             }
         } 
     }
+    
+    public boolean inRange(int row, int column){
+        return (row >= 0 && row <= maxRow) && (column >= 0 && column <= maxColumn);
+    }
+
+    private void checkWin(int row, int col, String color) {
+        
+    }
+    
+    
+    
 }
 
+        
