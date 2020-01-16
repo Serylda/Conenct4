@@ -10,13 +10,24 @@ public class Main {
     final int columns = 7;
     int[][][] array;
     
-    final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = blue, 2 = red
-    final int CHECKED = 1; //checked is index of 3rd array. 0 = not checked, 1 = checked
-    final int maxRow = 5;
-    final int maxColumn = 6;
+    static final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = blue, 2 = red
+    static final int CHECK = 1; //checked is index of 3rd array. 0 = not checked, 1 = checked
+    
+    static final int EMPTY = 0;
+    static final int BLUE = 1;
+    static final int RED = 2;
+
+    static final int NOT_CHECKED = 0;
+    static final int CHECKED = 1;
+
+    
+    static final int maxRow = 5;
+    static final int maxColumn = 6;
     
     public int blueTurnCount; //counts turns of player 1
     public int redTurnCount; //counts turns of player 2
+    
+    int counter = 0;
     
     public Main(){
         array = new int[rows][columns][2];
@@ -36,13 +47,16 @@ public class Main {
         do{
             System.out.println("Player 1(Blue): Pick number from 1 - 7");
             columnBlue = scan.nextInt();
-            m.dropDisc(columnBlue, "blue");
+            m.dropDisc(columnBlue, BLUE);
             m.printArrayState();
+            m.printArrayChecked();
             
             System.out.println("Player 2(Red): Pick number from 1 - 7");
             columnRed = scan.nextInt();
-            m.dropDisc(columnRed, "red");
+            m.dropDisc(columnRed, RED);
             m.printArrayState();
+            m.printArrayChecked();
+
             
             System.out.println("Continue? (Y/N)");
             input = scan.next();
@@ -69,13 +83,13 @@ public class Main {
     public void printArrayChecked(){
         for (int i = 0; i < rows; i++){
             for (int j = 0; j < columns; j++){
-                System.out.print(array[i][j][CHECKED] + " ");
+                System.out.print(array[i][j][CHECK] + " ");
             }
             System.out.println();
         }
     }
     
-    public void dropDisc(int column, String color){
+    public void dropDisc(int column, int color){
         int col = column - 1;
         int row = maxRow;
         for(row = maxRow; row >= 0; row--)
@@ -84,21 +98,21 @@ public class Main {
                 System.out.println("\nYour column value is out of range. Please choose a column value from 1-7\n");
                 break;
             }
-            else if (array[0][col][STATE] == 1 || array[0][col][STATE] == 2){
+            else if (array[0][col][STATE] == BLUE || array[0][col][STATE] == RED){
                 System.out.println("\nColumn is already full. Choose another column.\n");
                 break;
             }
-            else if (array[row][col][STATE] == 0)
+            else if (array[row][col][STATE] == EMPTY)
             {
-                if (color == "blue"){
-                    array[row][col][STATE] = 1;
+                if (color == BLUE){
+                    array[row][col][STATE] = BLUE;
                     blueTurnCount++;
-                    checkWin(row, col, color);
+                    checkWin(row, col, BLUE);
                 }
                 else {
-                    array[row][col][STATE] = 2;
+                    array[row][col][STATE] = RED;
                     redTurnCount++;
-                    checkWin(row, col, color);
+                    checkWin(row, col, RED);
                 }
                 break;
             }
@@ -109,8 +123,38 @@ public class Main {
         return (row >= 0 && row <= maxRow) && (column >= 0 && column <= maxColumn);
     }
 
-    private void checkWin(int row, int col, String color) {
-        
+    private void checkWin(int r, int c, int color) 
+    {
+        if (counter < 4)
+        {
+            System.out.println(counter);
+            if (inRange(r - 1, c) && array[r - 1][c][CHECK] == NOT_CHECKED)
+            {
+                if (array[r - 1][c][STATE] == color)
+                {
+                    counter++;
+                    checkWin(r - 1, c, color);
+                }
+                array[r - 1][c][CHECK] = CHECKED;
+            }
+            else if (inRange(r + 1, c) && array[r + 1][c][CHECK] == NOT_CHECKED)
+            {
+                if (array[r + 1][c][STATE] == color)
+                {
+                    counter++;
+                    checkWin(r + 1, c, color);
+                }
+                array[r + 1][c][CHECK] = CHECKED;
+            }
+            else
+            {
+                counter = 0;
+            }
+        }
+        else
+        {
+            System.out.println(color + "won");
+        }
     }
     
     
