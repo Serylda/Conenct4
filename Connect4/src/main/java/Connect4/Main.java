@@ -49,12 +49,14 @@ public class Main {
             columnBlue = scan.nextInt();
             m.dropDisc(columnBlue, BLUE);
             m.printArrayState();
+            System.out.println("\n");
             m.printArrayChecked();
             
             System.out.println("Player 2(Red): Pick number from 1 - 7");
             columnRed = scan.nextInt();
             m.dropDisc(columnRed, RED);
             m.printArrayState();
+            System.out.println("\n");
             m.printArrayChecked();
 
             
@@ -125,36 +127,42 @@ public class Main {
 
     private void checkWin(int r, int c, int color) 
     {
-        if (counter < 4)
-        {
-            System.out.println(counter);
-            if (inRange(r - 1, c) && array[r - 1][c][CHECK] == NOT_CHECKED)
-            {
-                if (array[r - 1][c][STATE] == color)
-                {
-                    counter++;
-                    checkWin(r - 1, c, color);
-                }
-                array[r - 1][c][CHECK] = CHECKED;
-            }
-            else if (inRange(r + 1, c) && array[r + 1][c][CHECK] == NOT_CHECKED)
-            {
-                if (array[r + 1][c][STATE] == color)
-                {
-                    counter++;
-                    checkWin(r + 1, c, color);
-                }
-                array[r + 1][c][CHECK] = CHECKED;
-            }
+        boolean win = false;
+        int counterRow = 0;
+        int prevColor = 0;
+        int[] arrayRow = new int[7];
+        int a = c - 3;
+        if (a < 0)
+            a = 0;
+        int b = c + 3;
+        if (b > maxColumn)
+            b = maxColumn;
+        
+        for (int i = a; i <= c; i++){
+            arrayRow[i - a] = array[r][i][STATE];
+            System.out.println(r + " " + i + " " + array[r][i][STATE]);
+        }
+        for (int j = c + 1; j <= b; j++){
+            arrayRow[3 + j - c] = array[r][j][STATE];
+            System.out.println(r + " " + j + " " + array[r][j][STATE]);
+        }
+        
+        for (int k = 0; k < arrayRow.length; k++){
+            System.out.print(arrayRow[k] + " ");
+            if (k == 0)
+                prevColor = arrayRow[k];
+            if (prevColor == arrayRow[k] && prevColor == color)
+                counterRow++;
+                if (counterRow == 4)
+                    break;
             else
-            {
-                counter = 0;
-            }
+                counterRow = 0;
+            prevColor = arrayRow[k];
         }
-        else
-        {
-            System.out.println(color + "won");
-        }
+        
+        System.out.println("counterRow: " + counterRow);
+        
+        
     }
     
     
