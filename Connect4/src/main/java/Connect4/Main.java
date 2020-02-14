@@ -128,8 +128,6 @@ public class Main {
     private void checkWin(int r, int c, int color) 
     {
         boolean win = false;
-        int counterRow = 0;
-        int prevColor = 0;
         int[] arrayRow = new int[7];
         int a = c - 3;
         if (a < 0)
@@ -149,15 +147,16 @@ public class Main {
         
         for (int k = 0; k < arrayRow.length; k++){
             System.out.print(arrayRow[k] + " ");
-            if (k == 0)
-                prevColor = arrayRow[k];
-            if (prevColor == arrayRow[k] && prevColor == color)
-                counterRow++;
-                if (counterRow == 4)
-                    break;
+        }
+        
+        int counterRow = 0;
+        for (int k = 0; k < arrayRow.length; k++){
+            if (arrayRow[k] == color)
+                counterRow ++;
             else
                 counterRow = 0;
-            prevColor = arrayRow[k];
+            if (counterRow >= 4)
+                break;
         }
         
         System.out.println("counterRow: " + counterRow);
