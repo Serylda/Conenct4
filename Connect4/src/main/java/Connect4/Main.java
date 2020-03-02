@@ -50,14 +50,14 @@ public class Main {
             m.dropDisc(columnBlue, BLUE);
             m.printArrayState();
             System.out.println("\n");
-            m.printArrayChecked();
+            //m.printArrayChecked();
             
             System.out.println("Player 2(Red): Pick number from 1 - 7");
             columnRed = scan.nextInt();
             m.dropDisc(columnRed, RED);
             m.printArrayState();
             System.out.println("\n");
-            m.printArrayChecked();
+            //m.printArrayChecked();
 
             
             System.out.println("Continue? (Y/N)");
@@ -127,7 +127,14 @@ public class Main {
 
     private void checkWin(int r, int c, int color) 
     {
-        boolean win = false;
+        if (checkWinRow(r, c, color))
+            System.out.println("player " + color + " won. Row");
+        if (checkWinCol(r, c, color))
+            System.out.println("player " + color + " won. Col");
+    }
+    
+    private boolean checkWinRow(int r, int c, int color)
+    {
         int[] arrayRow = new int[7];
         int a = c - 3;
         if (a < 0)
@@ -138,16 +145,14 @@ public class Main {
         
         for (int i = a; i <= c; i++){
             arrayRow[i - a] = array[r][i][STATE];
-            System.out.println(r + " " + i + " " + array[r][i][STATE]);
         }
         for (int j = c + 1; j <= b; j++){
             arrayRow[3 + j - c] = array[r][j][STATE];
-            System.out.println(r + " " + j + " " + array[r][j][STATE]);
         }
-        
+        /*
         for (int k = 0; k < arrayRow.length; k++){
             System.out.print(arrayRow[k] + " ");
-        }
+        }*/
         
         int counterRow = 0;
         for (int k = 0; k < arrayRow.length; k++){
@@ -156,16 +161,26 @@ public class Main {
             else
                 counterRow = 0;
             if (counterRow >= 4)
-                break;
+                return true;
         }
+       return false;
+    }
+    
+    private boolean checkWinCol(int r, int c, int color)
+    {
+        if (r > maxRow - 3)
+            return false;
         
-        System.out.println("counterRow: " + counterRow);
-        
+        for (int i = r, j = 1; i < maxRow && j <= 4; i++, j++){
+            if (array[i][c][STATE] != color)
+                return false;
+        }
+        return true;
         
     }
     
     
-    
+  
 }
 
         
