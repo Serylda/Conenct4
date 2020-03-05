@@ -1,6 +1,7 @@
 
 package Connect4;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -125,12 +126,21 @@ public class Main {
         return (row >= 0 && row <= maxRow) && (column >= 0 && column <= maxColumn);
     }
 
-    private void checkWin(int r, int c, int color) 
+    private boolean checkWin(int r, int c, int color) 
     {
-        if (checkWinRow(r, c, color))
+        /*if (checkWinRow(r, c, color)){
             System.out.println("player " + color + " won. Row");
-        if (checkWinCol(r, c, color))
-            System.out.println("player " + color + " won. Col");
+            return true;
+        }
+        else if (checkWinCol(r, c, color)){
+            System.out.println("player " + color + " won. Column");
+            return true;
+        }
+        else */if (checkWinDiagonal(r, c, color)){
+            System.out.println("player " + color + " won. Diagonal");
+            return true;
+        }
+        return false;
     }
     
     private boolean checkWinRow(int r, int c, int color)
@@ -177,6 +187,81 @@ public class Main {
         }
         return true;
         
+    }
+
+    private boolean checkWinDiagonal(int r, int c, int color) {
+        int[] arrayD = new int[7];
+        arrayD[3] = array[r][c][STATE];
+        int i, j, k = 0;
+        int a, b = 0;
+        int d = 2;
+        for (i = r+1, j = c+1; k < 3; k++, i++, j++){
+            if (inRange(i, j)){
+                if (array[i][j][STATE] == color){
+                    arrayD[4+k] = color;
+                }
+            }
+            else arrayD[4+k] = 0;
+        }
+        for (a = r-1, b = c-1; d >= 0; d--, a--, b--){
+            if (inRange(a, b)){
+                if (array[a][b][STATE] == color){
+                    arrayD[d] = color;
+                }
+            }
+            else arrayD[d] = 0;
+        }
+        
+        int counterD = 0;
+        boolean diagonal = false;
+        for (int x = 0; x < arrayD.length; x++){
+            if (arrayD[x] == color)
+                counterD++;
+            else
+                counterD = 0;
+            if (counterD >= 4)
+                diagonal = true;
+            else 
+                diagonal = false;
+        }
+        System.out.println("D - " + Arrays.toString(arrayD));
+        
+        int[] arrayD2 = new int[7];
+        arrayD2[3] = array[r][c][STATE];
+        int q, w = 0;
+        int e = 2;
+        int t, y, u = 0;
+        for (q = r+1, w = c-1; e >= 0; e--, q++, w--){
+            if (inRange(q, w)){
+                if (array[q][w][STATE] == color){
+                    arrayD2[e] = color;
+                }
+            }
+            else arrayD2[e] = 0;
+        }
+        for (t = r-1, y = c+1; u < 3; u++, t--, y++){
+            if (inRange(t, y)){
+                if (array[t][y][STATE] == color){
+                    arrayD2[4+u] = color;
+                }
+            }
+            else arrayD2[4+u] = 0;
+        }
+        
+        int counterD2 = 0;
+        boolean diagonal2 = false;
+        for (int z = 0; z < arrayD2.length; z++){
+            if (arrayD2[z] == color)
+                counterD2++;
+            else
+                counterD2 = 0;
+            if (counterD2 >= 4)
+                diagonal2 = true;
+            else 
+                diagonal2 = false;
+        }
+        System.out.println("D2 - " + Arrays.toString(arrayD2));
+        return diagonal || diagonal2;
     }
     
     
