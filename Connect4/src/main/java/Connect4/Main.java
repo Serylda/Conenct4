@@ -44,33 +44,25 @@ public class Main {
         String input = "";
         int columnBlue = 0;
         int columnRed = 0;
-        
+        boolean gameContinue = false;
         do{
             System.out.println("Player 1(Blue): Pick number from 1 - 7");
             columnBlue = scan.nextInt();
-            m.dropDisc(columnBlue, BLUE);
+            gameContinue = m.dropDisc(columnBlue, BLUE);
             m.printArrayState();
             System.out.println("\n");
-            //m.printArrayChecked();
+            if (gameContinue) break;
             
             System.out.println("Player 2(Red): Pick number from 1 - 7");
             columnRed = scan.nextInt();
-            m.dropDisc(columnRed, RED);
+            gameContinue = m.dropDisc(columnRed, RED);
             m.printArrayState();
             System.out.println("\n");
-            //m.printArrayChecked();
 
-            
-            System.out.println("Continue? (Y/N)");
-            input = scan.next();
-            if (input.equals("Y") || input.equals("y"))
-                userChoice = true;
-            else 
-                userChoice = false;
             
             System.out.println("\n\n");
             
-        }while (userChoice);
+        }while (!gameContinue);
     }
     
     
@@ -92,7 +84,7 @@ public class Main {
         }
     }
     
-    public void dropDisc(int column, int color){
+    public boolean dropDisc(int column, int color){
         int col = column - 1;
         int row = maxRow;
         for(row = maxRow; row >= 0; row--)
@@ -110,17 +102,18 @@ public class Main {
                 if (color == BLUE){
                     array[row][col][STATE] = BLUE;
                     blueTurnCount++;
-                    checkWin(row, col, BLUE);
+                    return checkWin(row, col, BLUE);
                 }
                 else {
                     array[row][col][STATE] = RED;
                     redTurnCount++;
-                    checkWin(row, col, RED);
+                    return checkWin(row, col, RED);
                 }
-                break;
             }
         } 
+        return false;
     }
+    
     
     public boolean inRange(int row, int column){
         return (row >= 0 && row <= maxRow) && (column >= 0 && column <= maxColumn);
@@ -128,7 +121,7 @@ public class Main {
 
     private boolean checkWin(int r, int c, int color) 
     {
-        /*if (checkWinRow(r, c, color)){
+        if (checkWinRow(r, c, color)){
             System.out.println("player " + color + " won. Row");
             return true;
         }
@@ -136,7 +129,7 @@ public class Main {
             System.out.println("player " + color + " won. Column");
             return true;
         }
-        else */if (checkWinDiagonal(r, c, color)){
+        else if (checkWinDiagonal(r, c, color)){
             System.out.println("player " + color + " won. Diagonal");
             return true;
         }
@@ -159,10 +152,6 @@ public class Main {
         for (int j = c + 1; j <= b; j++){
             arrayRow[3 + j - c] = array[r][j][STATE];
         }
-        /*
-        for (int k = 0; k < arrayRow.length; k++){
-            System.out.print(arrayRow[k] + " ");
-        }*/
         
         int counterRow = 0;
         for (int k = 0; k < arrayRow.length; k++){
@@ -181,7 +170,7 @@ public class Main {
         if (r > maxRow - 3)
             return false;
         
-        for (int i = r, j = 1; i < maxRow && j <= 4; i++, j++){
+        for (int i = r, j = 1; i <= maxRow && j <= 4; i++, j++){
             if (array[i][c][STATE] != color)
                 return false;
         }
