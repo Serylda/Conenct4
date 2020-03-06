@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class Main {
+public class Game {
     
     final int rows = 6;
     final int columns = 7;
@@ -30,7 +30,7 @@ public class Main {
     
     int counter = 0;
     
-    public Main(){
+    public Game(){
         array = new int[rows][columns][2];
         blueTurnCount = 0;
         redTurnCount = 0;
@@ -38,7 +38,7 @@ public class Main {
             
     public static void main(String[] args)
     {
-        Main m = new Main();
+        Game m = new Game();
         boolean userChoice = true;
         Scanner scan = new Scanner(System.in);
         String input = "";
