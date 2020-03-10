@@ -14,7 +14,7 @@ public class Window extends javax.swing.JFrame {
 
     Game gGame;
     //Graphics graphic
-    
+    int currentColor = 0;
     
     public Window() {
         initComponents();
@@ -23,16 +23,11 @@ public class Window extends javax.swing.JFrame {
         logo.setIcon(new ImageIcon("logo.png"));
         
         gGame = new Game();
-        CPanel gridPanel = new CPanel();
-        gridPanel.setGame(gGame);
-        System.out.println(column1.getX());
-        System.out.println(column2.getX());
-        //System.out.println(column3.getX());
-        //System.out.println(column4.getX());
-        //System.out.println(column5.getX());
-        //System.out.println(column6.getX());
-        //System.out.println(column7.getX());
-                
+        currentColor = 1;
+        //CPanel gridPanel = new CPanel();
+        //gridPanel.setGame(gGame);
+        
+        
         column1.setLocation(0, column1.getY());
         System.out.println(column1.getX());
         
@@ -63,20 +58,52 @@ public class Window extends javax.swing.JFrame {
         }while (!gameContinue);*/
     }
     
-    public void renderGrid()
+    public void rendorGrid(Graphics g)
     {
-        
+        for (int r = 0; r < 6; r++)
+            for (int c = 0; c < 7; c++)
+                drawR(c, r, g);
+        //g.drawRect(0, 0, 10, 10);
     }
-    /*
+    
     public void drawR(int col, int row, Graphics g)
     {
-        int sideLength = 80;
-        int distance = 10;
+        int sideLength = 60;
+        int innerLength = 40;
+        int distance = 30;
         
-        g.fillRect(100 + row * (sideLength + distance), RED, sideLength, sideLength);
-        g.drawRect(RED, RED, sideLength, sideLength);
+        g.setColor(Color.GRAY);
+        g.fillRect(distance + col * (sideLength + distance), row * (sideLength + distance), sideLength, sideLength); 
+        g.setColor(Color.DARK_GRAY);
+        g.drawRect(distance + col * (sideLength + distance), row * (sideLength + distance), sideLength, sideLength);
+        g.setColor(Color.WHITE);
+        g.drawRect(distance + 2 + col * (sideLength + distance), 2 + row * (sideLength + distance), sideLength - 4, sideLength - 4); 
         
-    }*/
+        if (gGame.array[row][col][gGame.STATE] == gGame.BLUE)
+            g.setColor(new Color(51, 153, 255));
+        else if (gGame.array[row][col][gGame.STATE] == gGame.RED)
+            g.setColor(new Color(255, 51, 51));
+        else
+            g.setColor(Color.WHITE);
+        
+        g.fillRect(distance + (sideLength - innerLength)/2 + col * (sideLength + distance),
+                (sideLength - innerLength)/2 + row * (sideLength + distance), innerLength, innerLength);
+        
+        g.setColor(Color.DARK_GRAY);
+        g.drawRect(distance + (sideLength - innerLength)/2 + col * (sideLength + distance),
+                (sideLength - innerLength)/2 + row * (sideLength + distance), innerLength, innerLength);
+        //g.fillRect(distance + col * (sideLength + distance), row * (sideLength + distance), sideLength, sideLength); 
+    }
+    
+    public void alternateColor()
+    {
+        if (currentColor == 0)
+            currentColor = 1; //blue
+        else if (currentColor == 1)
+            currentColor = 2;
+        else
+            currentColor = 1;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -297,33 +324,45 @@ public class Window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void column1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column1ActionPerformed
-        // TODO add your handling code here:
-        gGame.dropDisc(1, gGame.RED);
-        gridPanel.repaint();
+        gGame.dropDisc(1, currentColor);
+        alternateColor();
+        rendorGrid(gridPanel.getGraphics());
     }//GEN-LAST:event_column1ActionPerformed
 
     private void column2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column2ActionPerformed
-        // TODO add your handling code here:
+        gGame.dropDisc(2, currentColor);
+        alternateColor();
+        rendorGrid(gridPanel.getGraphics());
     }//GEN-LAST:event_column2ActionPerformed
 
     private void column3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column3ActionPerformed
-        // TODO add your handling code here:
+        gGame.dropDisc(3, currentColor);
+        alternateColor();
+        rendorGrid(gridPanel.getGraphics());
     }//GEN-LAST:event_column3ActionPerformed
 
     private void column4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column4ActionPerformed
-        // TODO add your handling code here:
+        gGame.dropDisc(4, currentColor);
+        alternateColor();
+        rendorGrid(gridPanel.getGraphics());
     }//GEN-LAST:event_column4ActionPerformed
 
     private void column5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column5ActionPerformed
-        // TODO add your handling code here:
+        gGame.dropDisc(5, currentColor);
+        alternateColor();
+        rendorGrid(gridPanel.getGraphics());
     }//GEN-LAST:event_column5ActionPerformed
 
     private void column6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column6ActionPerformed
-        // TODO add your handling code here:
+        gGame.dropDisc(6, currentColor);
+        alternateColor();
+        rendorGrid(gridPanel.getGraphics());
     }//GEN-LAST:event_column6ActionPerformed
 
     private void column7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column7ActionPerformed
-        // TODO add your handling code here:
+        gGame.dropDisc(7, currentColor);
+        alternateColor();
+        rendorGrid(gridPanel.getGraphics());
     }//GEN-LAST:event_column7ActionPerformed
 
     /**
