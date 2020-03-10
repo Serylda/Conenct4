@@ -1,8 +1,6 @@
 
 package Connect4;
 
-import static Connect4.Game.BLUE;
-import static Connect4.Game.RED;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -24,8 +22,19 @@ public class Window extends javax.swing.JFrame {
         tabPane.setSelectedIndex(0);
         logo.setIcon(new ImageIcon("logo.png"));
         
-        
         g = new Game();
+        CPanel gridPanel = new CPanel();
+        gridPanel.setGame(g);
+        System.out.println(column1.getX());
+        System.out.println(column2.getX());
+        //System.out.println(column3.getX());
+        //System.out.println(column4.getX());
+        //System.out.println(column5.getX());
+        //System.out.println(column6.getX());
+        //System.out.println(column7.getX());
+                
+        column1.setLocation(0, column1.getY());
+        System.out.println(column1.getX());
         
         //column1.setIcon(new ImageIcon("logo.png"));
         /*
@@ -56,10 +65,10 @@ public class Window extends javax.swing.JFrame {
     
     public void renderGrid()
     {
-        Graphics graphics = gridPanel.getGraphics();
+        
        
     }
-    
+    /*
     public void drawR(int col, int row, Graphics g)
     {
         int sideLength = 80;
@@ -68,7 +77,7 @@ public class Window extends javax.swing.JFrame {
         g.fillRect(100 + row * (sideLength + distance), RED, sideLength, sideLength);
         g.drawRect(RED, RED, sideLength, sideLength);
         
-    }
+    }*/
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -79,7 +88,7 @@ public class Window extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         game = new javax.swing.JPanel();
-        gridPanel = new javax.swing.JPanel();
+        gridPanel = new CPanel();
         buttonPanel = new javax.swing.JPanel();
         column1 = new javax.swing.JButton();
         column2 = new javax.swing.JButton();
@@ -104,7 +113,7 @@ public class Window extends javax.swing.JFrame {
         loginLayout.setHorizontalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
+                .addContainerGap(273, Short.MAX_VALUE)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(243, 243, 243))
             .addGroup(loginLayout.createSequentialGroup()
@@ -119,7 +128,7 @@ public class Window extends javax.swing.JFrame {
                 .addComponent(logo)
                 .addGap(221, 221, 221)
                 .addComponent(jLabel1)
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addContainerGap(412, Short.MAX_VALUE))
         );
 
         tabPane.addTab("Login", login);
@@ -132,10 +141,13 @@ public class Window extends javax.swing.JFrame {
         );
         gridPanelLayout.setVerticalGroup(
             gridPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 526, Short.MAX_VALUE)
+            .addGap(0, 574, Short.MAX_VALUE)
         );
 
         column1.setText("1");
+        column1.setMaximumSize(new java.awt.Dimension(60, 25));
+        column1.setMinimumSize(new java.awt.Dimension(60, 25));
+        column1.setPreferredSize(new java.awt.Dimension(60, 25));
         column1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 column1ActionPerformed(evt);
@@ -143,6 +155,9 @@ public class Window extends javax.swing.JFrame {
         });
 
         column2.setText("2");
+        column2.setMaximumSize(new java.awt.Dimension(60, 25));
+        column2.setMinimumSize(new java.awt.Dimension(60, 25));
+        column2.setPreferredSize(new java.awt.Dimension(60, 25));
         column2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 column2ActionPerformed(evt);
@@ -150,6 +165,9 @@ public class Window extends javax.swing.JFrame {
         });
 
         column3.setText("3");
+        column3.setMaximumSize(new java.awt.Dimension(60, 25));
+        column3.setMinimumSize(new java.awt.Dimension(60, 25));
+        column3.setPreferredSize(new java.awt.Dimension(60, 25));
         column3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 column3ActionPerformed(evt);
@@ -157,6 +175,9 @@ public class Window extends javax.swing.JFrame {
         });
 
         column4.setText("4");
+        column4.setMaximumSize(new java.awt.Dimension(60, 25));
+        column4.setMinimumSize(new java.awt.Dimension(60, 25));
+        column4.setPreferredSize(new java.awt.Dimension(60, 25));
         column4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 column4ActionPerformed(evt);
@@ -164,6 +185,9 @@ public class Window extends javax.swing.JFrame {
         });
 
         column5.setText("5");
+        column5.setMaximumSize(new java.awt.Dimension(60, 25));
+        column5.setMinimumSize(new java.awt.Dimension(60, 25));
+        column5.setPreferredSize(new java.awt.Dimension(60, 25));
         column5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 column5ActionPerformed(evt);
@@ -171,6 +195,9 @@ public class Window extends javax.swing.JFrame {
         });
 
         column6.setText("6");
+        column6.setMaximumSize(new java.awt.Dimension(60, 25));
+        column6.setMinimumSize(new java.awt.Dimension(60, 25));
+        column6.setPreferredSize(new java.awt.Dimension(60, 25));
         column6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 column6ActionPerformed(evt);
@@ -178,6 +205,9 @@ public class Window extends javax.swing.JFrame {
         });
 
         column7.setText("7");
+        column7.setMaximumSize(new java.awt.Dimension(60, 25));
+        column7.setMinimumSize(new java.awt.Dimension(60, 25));
+        column7.setPreferredSize(new java.awt.Dimension(60, 25));
         column7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 column7ActionPerformed(evt);
@@ -188,35 +218,35 @@ public class Window extends javax.swing.JFrame {
         buttonPanel.setLayout(buttonPanelLayout);
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(column1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(column2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(column3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(column4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(column5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(column6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(column7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(column1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(column2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(column3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(column4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(column5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(column6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(column7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(column1)
-                    .addComponent(column2)
-                    .addComponent(column3)
-                    .addComponent(column4)
-                    .addComponent(column5)
-                    .addComponent(column6)
-                    .addComponent(column7))
+                    .addComponent(column1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(column2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(column3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(column4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(column5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(column6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(column7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
@@ -228,7 +258,7 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(gameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(gridPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 188, Short.MAX_VALUE))
+                .addGap(0, 234, Short.MAX_VALUE))
         );
         gameLayout.setVerticalGroup(
             gameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,11 +274,11 @@ public class Window extends javax.swing.JFrame {
         stats.setLayout(statsLayout);
         statsLayout.setHorizontalGroup(
             statsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 967, Short.MAX_VALUE)
+            .addGap(0, 995, Short.MAX_VALUE)
         );
         statsLayout.setVerticalGroup(
             statsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGap(0, 672, Short.MAX_VALUE)
         );
 
         tabPane.addTab("Stats", stats);

@@ -11,19 +11,19 @@ public class Game {
     final int columns = 7;
     int[][][] array;
     
-    static final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = blue, 2 = red
+    public final int STATE = 0; //state is index of 3rd array. 0 = empty, 1 = blue, 2 = red
     static final int CHECK = 1; //checked is index of 3rd array. 0 = not checked, 1 = checked
     
-    static final int EMPTY = 0;
-    static final int BLUE = 1;
-    static final int RED = 2;
+    public final int EMPTY = 0;
+    public final int BLUE = 1;
+    public final int RED = 2;
 
-    static final int NOT_CHECKED = 0;
-    static final int CHECKED = 1;
+    public final int NOT_CHECKED = 0;
+    public final int CHECKED = 1;
 
     
-    static final int maxRow = 5;
-    static final int maxColumn = 6;
+    public final int maxRow = 5;
+    public final int maxColumn = 6;
     
     public int blueTurnCount; //counts turns of player 1
     public int redTurnCount; //counts turns of player 2
@@ -35,7 +35,7 @@ public class Game {
         blueTurnCount = 0;
         redTurnCount = 0;
     }
-            
+    /*        
     public static void main(String[] args)
     {
         Game m = new Game();
@@ -63,7 +63,7 @@ public class Game {
             System.out.println("\n\n");
             
         }while (!gameContinue);
-    }
+    }*/
     
     
     public void printArrayState(){
