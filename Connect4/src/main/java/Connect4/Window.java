@@ -12,8 +12,8 @@ import java.awt.Graphics;
  */
 public class Window extends javax.swing.JFrame {
 
-    Game g;
-    //Graphics graphics;
+    Game gGame;
+    //Graphics graphic
     
     
     public Window() {
@@ -22,9 +22,9 @@ public class Window extends javax.swing.JFrame {
         tabPane.setSelectedIndex(0);
         logo.setIcon(new ImageIcon("logo.png"));
         
-        g = new Game();
+        gGame = new Game();
         CPanel gridPanel = new CPanel();
-        gridPanel.setGame(g);
+        gridPanel.setGame(gGame);
         System.out.println(column1.getX());
         System.out.println(column2.getX());
         //System.out.println(column3.getX());
@@ -66,7 +66,6 @@ public class Window extends javax.swing.JFrame {
     public void renderGrid()
     {
         
-       
     }
     /*
     public void drawR(int col, int row, Graphics g)
@@ -299,6 +298,8 @@ public class Window extends javax.swing.JFrame {
 
     private void column1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column1ActionPerformed
         // TODO add your handling code here:
+        gGame.dropDisc(1, gGame.RED);
+        gridPanel.repaint();
     }//GEN-LAST:event_column1ActionPerformed
 
     private void column2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_column2ActionPerformed

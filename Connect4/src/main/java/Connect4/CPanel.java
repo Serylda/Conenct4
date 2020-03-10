@@ -46,8 +46,10 @@ public class CPanel extends JPanel {
         
         g.setColor(Color.GRAY);
         g.fillRect(distance + col * (sideLength + distance), row * (sideLength + distance), sideLength, sideLength); 
+        g.setColor(Color.DARK_GRAY);
+        g.drawRect(distance + col * (sideLength + distance), row * (sideLength + distance), sideLength, sideLength);
         g.setColor(Color.WHITE);
-        g.drawRect(distance + col * (sideLength + distance), row * (sideLength + distance), sideLength, sideLength); 
+        g.drawRect(distance + 2 + col * (sideLength + distance), 2 + row * (sideLength + distance), sideLength - 4, sideLength - 4); 
         
         if (game.array[row][col][game.STATE] == game.BLUE)
             g.setColor(Color.BLUE);

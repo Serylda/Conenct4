@@ -213,7 +213,7 @@ public class Game {
             else 
                 diagonal = false;
         }
-        System.out.println("D - " + Arrays.toString(arrayD));
+        //System.out.println("D - " + Arrays.toString(arrayD));
         
         int[] arrayD2 = new int[7];
         arrayD2[3] = array[r][c][STATE];
@@ -249,7 +249,7 @@ public class Game {
             else 
                 diagonal2 = false;
         }
-        System.out.println("D2 - " + Arrays.toString(arrayD2));
+        //System.out.println("D2 - " + Arrays.toString(arrayD2));
         return diagonal || diagonal2;
     }
     
