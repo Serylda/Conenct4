@@ -35,7 +35,7 @@ public class Game {
         blueTurnCount = 0;
         redTurnCount = 0;
     }
-    /*        
+            
     public static void main(String[] args)
     {
         Game m = new Game();
@@ -48,14 +48,14 @@ public class Game {
         do{
             System.out.println("Player 1(Blue): Pick number from 1 - 7");
             columnBlue = scan.nextInt();
-            gameContinue = m.dropDisc(columnBlue, BLUE);
+            gameContinue = m.dropDisc(columnBlue, 1);
             m.printArrayState();
             System.out.println("\n");
             if (gameContinue) break;
             
             System.out.println("Player 2(Red): Pick number from 1 - 7");
             columnRed = scan.nextInt();
-            gameContinue = m.dropDisc(columnRed, RED);
+            gameContinue = m.dropDisc(columnRed, 2);
             m.printArrayState();
             System.out.println("\n");
 
@@ -63,7 +63,7 @@ public class Game {
             System.out.println("\n\n");
             
         }while (!gameContinue);
-    }*/
+    }
     
     
     public void printArrayState(){
@@ -202,16 +202,13 @@ public class Game {
         }
         
         int counterD = 0;
-        boolean diagonal = false;
         for (int x = 0; x < arrayD.length; x++){
             if (arrayD[x] == color)
                 counterD++;
             else
                 counterD = 0;
             if (counterD >= 4)
-                diagonal = true;
-            else 
-                diagonal = false;
+                return true;
         }
         //System.out.println("D - " + Arrays.toString(arrayD));
         
@@ -238,19 +235,16 @@ public class Game {
         }
         
         int counterD2 = 0;
-        boolean diagonal2 = false;
         for (int z = 0; z < arrayD2.length; z++){
             if (arrayD2[z] == color)
                 counterD2++;
             else
                 counterD2 = 0;
             if (counterD2 >= 4)
-                diagonal2 = true;
-            else 
-                diagonal2 = false;
+                return true;
         }
         //System.out.println("D2 - " + Arrays.toString(arrayD2));
-        return diagonal || diagonal2;
+        return false;
     }
     
     
