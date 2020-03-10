@@ -15,7 +15,7 @@ import java.awt.Graphics;
 public class Window extends javax.swing.JFrame {
 
     Game g;
-    Graphics graphics;
+    //Graphics graphics;
     
     
     public Window() {
@@ -26,6 +26,7 @@ public class Window extends javax.swing.JFrame {
         
         
         g = new Game();
+        
         //column1.setIcon(new ImageIcon("logo.png"));
         /*
         boolean userChoice = true;
@@ -52,7 +53,22 @@ public class Window extends javax.swing.JFrame {
             System.out.println("\n\n");
         }while (!gameContinue);*/
     }
+    
+    public void renderGrid()
+    {
+        Graphics graphics = gridPanel.getGraphics();
+       
+    }
+    
+    public void drawR(int col, int row, Graphics g)
+    {
+        int sideLength = 80;
+        int distance = 10;
         
+        g.fillRect(100 + row * (sideLength + distance), RED, sideLength, sideLength);
+        g.drawRect(RED, RED, sideLength, sideLength);
+        
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
