@@ -27,6 +27,7 @@ public class Game {
     
     public int blueTurnCount; //counts turns of player 1
     public int redTurnCount; //counts turns of player 2
+    public boolean valOutOfBounds = false;
     
     int counter = 0;
     
@@ -84,6 +85,27 @@ public class Game {
         }
     }
     
+    public void clearArray(){
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < columns; j++){
+                array[i][j][STATE] = 0;
+            }
+        }
+    }
+    
+    public boolean isColFull(int col){
+        boolean check = false;
+        for (int i = 0; i < rows; i++){
+            if (array[i][col-1][STATE] != 0)
+                check = true;
+            else{
+                check = false;
+                break;
+            }
+        }
+        return check;
+    }
+    
     public boolean dropDisc(int column, int color){
         int col = column - 1;
         int row = maxRow;
@@ -91,6 +113,7 @@ public class Game {
         {
             if (col < 0 || col > maxColumn){
                 System.out.println("\nYour column value is out of range. Please choose a column value from 1-7\n");
+                valOutOfBounds = true;
                 break;
             }
             else if (array[0][col][STATE] == BLUE || array[0][col][STATE] == RED){
@@ -164,6 +187,8 @@ public class Game {
         }
        return false;
     }
+    
+    
     
     private boolean checkWinCol(int r, int c, int color)
     {
