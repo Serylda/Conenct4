@@ -23,6 +23,7 @@ public class Window extends javax.swing.JFrame {
         
         tabPane.setSelectedIndex(0);
         logo.setIcon(new ImageIcon("logo.png"));
+        infoPanel.setIcon(new ImageIcon("PlayGame.png"));
         
         gGame = new Game();
         currentColor = 1;
@@ -159,6 +160,24 @@ public class Window extends javax.swing.JFrame {
         else
             currentColor = 1;
     }
+    
+    public void updateInfoPanel(int color){
+        if (color == 1){
+            infoPanel.setIcon(new ImageIcon("GOP1Wins.png"));
+        }
+        else if(color == 2){
+            infoPanel.setIcon(new ImageIcon("GOP2Wins.png"));
+        }
+    }
+    
+    public void turnInfoPanel(int color){
+        if (color == 1){
+            infoPanel.setIcon(new ImageIcon("Player1Turn.png"));
+        }
+        else if (color == 2){
+            infoPanel.setIcon(new ImageIcon("Player2Turn.png"));
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -178,7 +197,7 @@ public class Window extends javax.swing.JFrame {
         column6 = new javax.swing.JButton();
         column7 = new javax.swing.JButton();
         clearGrid = new javax.swing.JButton();
-        infoPanel = new javax.swing.JPanel();
+        infoPanel = new javax.swing.JLabel();
         stats = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -192,7 +211,7 @@ public class Window extends javax.swing.JFrame {
         loginLayout.setHorizontalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
-                .addContainerGap(273, Short.MAX_VALUE)
+                .addContainerGap(379, Short.MAX_VALUE)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(243, 243, 243))
         );
@@ -330,16 +349,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
-        infoPanel.setLayout(infoPanelLayout);
-        infoPanelLayout.setHorizontalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        infoPanelLayout.setVerticalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 67, Short.MAX_VALUE)
-        );
+        infoPanel.setText(" ");
 
         javax.swing.GroupLayout gameLayout = new javax.swing.GroupLayout(game);
         game.setLayout(gameLayout);
@@ -349,15 +359,13 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(gameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(gridPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(gameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addComponent(clearGrid)
-                        .addGap(75, 75, 75))))
+                        .addGap(0, 245, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         gameLayout.setVerticalGroup(
             gameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,9 +374,9 @@ public class Window extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gridPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(gameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(14, 14, 14)
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clearGrid)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -379,7 +387,7 @@ public class Window extends javax.swing.JFrame {
         stats.setLayout(statsLayout);
         statsLayout.setHorizontalGroup(
             statsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 995, Short.MAX_VALUE)
+            .addGap(0, 1101, Short.MAX_VALUE)
         );
         statsLayout.setVerticalGroup(
             statsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,7 +400,7 @@ public class Window extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPane)
+            .addComponent(tabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,12 +414,14 @@ public class Window extends javax.swing.JFrame {
         win = gGame.dropDisc(1, currentColor);
         if (win){
             winningColor = currentColor;
+            updateInfoPanel(winningColor);
             rendorGrid(gridPanel.getGraphics());
             disableAllButtons();
         }
         else{
             alternateColor();
             rendorGrid(gridPanel.getGraphics());
+            turnInfoPanel(currentColor);
             checkDisableButtons(1);
         }
     }//GEN-LAST:event_column1ActionPerformed
@@ -420,12 +430,14 @@ public class Window extends javax.swing.JFrame {
         win = gGame.dropDisc(2, currentColor);
         if (win){
             winningColor = currentColor;
+            updateInfoPanel(winningColor);
             rendorGrid(gridPanel.getGraphics());
             disableAllButtons();
         }
         else{
             alternateColor();
             rendorGrid(gridPanel.getGraphics());
+            turnInfoPanel(currentColor);
             checkDisableButtons(2);
         }
     }//GEN-LAST:event_column2ActionPerformed
@@ -434,12 +446,14 @@ public class Window extends javax.swing.JFrame {
         win = gGame.dropDisc(3, currentColor);
         if (win){
             winningColor = currentColor;
+            updateInfoPanel(winningColor);
             rendorGrid(gridPanel.getGraphics());
             disableAllButtons();
         }
         else{
             alternateColor();
             rendorGrid(gridPanel.getGraphics());
+            turnInfoPanel(currentColor);
             checkDisableButtons(3);
         }
     }//GEN-LAST:event_column3ActionPerformed
@@ -448,12 +462,14 @@ public class Window extends javax.swing.JFrame {
         win = gGame.dropDisc(4, currentColor);
         if (win){
             winningColor = currentColor;
+            updateInfoPanel(winningColor);
             rendorGrid(gridPanel.getGraphics());
             disableAllButtons();
         }
         else{
             alternateColor();
             rendorGrid(gridPanel.getGraphics());
+            turnInfoPanel(currentColor);
             checkDisableButtons(4);
         }
     }//GEN-LAST:event_column4ActionPerformed
@@ -462,12 +478,14 @@ public class Window extends javax.swing.JFrame {
         win = gGame.dropDisc(5, currentColor);
         if (win){
             winningColor = currentColor;
+            updateInfoPanel(winningColor);
             rendorGrid(gridPanel.getGraphics());
             disableAllButtons();
         }
         else{
             alternateColor();
             rendorGrid(gridPanel.getGraphics());
+            turnInfoPanel(currentColor);
             checkDisableButtons(5);
         }
     }//GEN-LAST:event_column5ActionPerformed
@@ -476,12 +494,14 @@ public class Window extends javax.swing.JFrame {
         win = gGame.dropDisc(6, currentColor);
         if (win){
             winningColor = currentColor;
+            updateInfoPanel(winningColor);
             rendorGrid(gridPanel.getGraphics());
             disableAllButtons();
         }
         else{
             alternateColor();
             rendorGrid(gridPanel.getGraphics());
+            turnInfoPanel(currentColor);
             checkDisableButtons(6);
         }
     }//GEN-LAST:event_column6ActionPerformed
@@ -490,18 +510,21 @@ public class Window extends javax.swing.JFrame {
         win = gGame.dropDisc(7, currentColor);
         if (win){
             winningColor = currentColor;
+            updateInfoPanel(winningColor);
             rendorGrid(gridPanel.getGraphics());
             disableAllButtons();
         }
         else{
             alternateColor();
             rendorGrid(gridPanel.getGraphics());
+            turnInfoPanel(currentColor);
             checkDisableButtons(7);
         }
     }//GEN-LAST:event_column7ActionPerformed
 
     private void clearGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearGridActionPerformed
         gameWon(winningColor);
+        infoPanel.setIcon(new ImageIcon("PlayGame.png"));
     }//GEN-LAST:event_clearGridActionPerformed
 
     /**
@@ -555,7 +578,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton column7;
     private javax.swing.JPanel game;
     private javax.swing.JPanel gridPanel;
-    private javax.swing.JPanel infoPanel;
+    private javax.swing.JLabel infoPanel;
     private javax.swing.JPanel login;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel stats;
