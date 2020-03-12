@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.TreeMap;
 
 /**
  *
@@ -17,9 +18,11 @@ public class Window extends javax.swing.JFrame {
     int currentColor = 0;
     boolean win = false;
     int winningColor = 0;
+    private TreeMap<String, Player> players;
     
     public Window() {
         initComponents();
+        players = new TreeMap<>();
         
         tabPane.setSelectedIndex(0);
         logo.setIcon(new ImageIcon("logo.png"));
@@ -34,31 +37,7 @@ public class Window extends javax.swing.JFrame {
         column1.setLocation(0, column1.getY());
         System.out.println(column1.getX());
         
-        //column1.setIcon(new ImageIcon("logo.png"));
-        /*
-        boolean userChoice = true;
-        Scanner scan = new Scanner(System.in);
-        String input = "";
-        int columnBlue = 0;
-        int columnRed = 0;
-        boolean gameContinue = false;
-        do{
-            System.out.println("Player 1(Blue): Pick number from 1 - 7");
-            columnBlue = scan.nextInt();
-            gameContinue = g.dropDisc(columnBlue, BLUE);
-            g.printArrayState();
-            System.out.println("\n");
-            if (gameContinue) break;
-            
-            System.out.println("Player 2(Red): Pick number from 1 - 7");
-            columnRed = scan.nextInt();
-            gameContinue = g.dropDisc(columnRed, RED);
-            g.printArrayState();
-            System.out.println("\n");
-
-            
-            System.out.println("\n\n");
-        }while (!gameContinue);*/
+        
     }
     
     public void rendorGrid(Graphics g)
