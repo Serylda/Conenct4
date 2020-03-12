@@ -85,6 +85,7 @@ public class Window extends javax.swing.JFrame {
     }
     
     public void checkDisableButtons(int col){
+        checkTie();
         if (gGame.isColFull(col)){
             if (col == 1){
                 column1.setEnabled(false);
@@ -108,6 +109,12 @@ public class Window extends javax.swing.JFrame {
                 column7.setEnabled(false);
             }
         }
+    }
+    
+    public void checkTie()
+    {
+        if (gGame.isFull())
+            infoPanel.setIcon(new ImageIcon("TieGame.png"));
     }
     
     public void enableAllButtons(){
@@ -498,6 +505,7 @@ public class Window extends javax.swing.JFrame {
             rendorGrid(gridPanel.getGraphics());
             turnInfoPanel(currentColor);
             checkDisableButtons(7);
+            
         }
     }//GEN-LAST:event_column7ActionPerformed
 
