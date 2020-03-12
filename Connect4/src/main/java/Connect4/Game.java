@@ -106,6 +106,14 @@ public class Game {
         return check;
     }
     
+    public boolean isFull()
+    {
+        for(int i = 1; i <= maxColumn + 1; i++)
+            if (!isColFull(i))
+                return false;
+        return true;
+    }
+    
     public boolean dropDisc(int column, int color){
         int col = column - 1;
         int row = maxRow;
