@@ -28,3 +28,11 @@ Once the game is opened on a Java Swing GUI window, you should be on the "Login"
 https://user-images.githubusercontent.com/43790515/208215566-a9c4b930-3d6e-4b65-8593-3bcbb2d5c830.mp4
 
 ## Contributing
+
+After coding this program, we thought about a lot of potential features that we could add, such as animations for the disks, login profiles to store player statistics, and even an AI to play against in a single-player mode. We are always open to new ideas, and if you would like to add a new feature to our project, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch to work on the feature
+3. Commit your changes
+4. Push your changes to the branch
+5. Create a pull request
