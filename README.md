@@ -2,6 +2,8 @@
 
 ## About the Project
 
+This is the classic 2-player game of Connect 4. Play against another player by taking turns on the same machine and see who can connect four disks first!
+
 ## Installation
 
 1. Make sure you have installed <a href="https://www.java.com/en/download/manual.jsp">Java</a> on your system
