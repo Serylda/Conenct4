@@ -25,4 +25,6 @@ Once the game is opened on a Java Swing GUI window, you should be on the "Login"
 
 ## Demo
 
+https://user-images.githubusercontent.com/43790515/208215566-a9c4b930-3d6e-4b65-8593-3bcbb2d5c830.mp4
+
 ## Contributing
